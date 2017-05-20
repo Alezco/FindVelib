@@ -13,12 +13,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Toast toast = null;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter recyclerAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     private String[] values = new String[] {
-            "lol", "mdr", "ptdr"
+            "lol", "mdr", "ptdr", RequestManager.getInstance().test
     };
 
     @Override
@@ -28,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         handleList();
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        //RequestManager.getInstance().getData();
     }
 
     @Override
@@ -58,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleList() {
-        recyclerView = (RecyclerView) findViewById(R.id.velib_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.velib_list);
+        RecyclerView.Adapter recyclerAdapter = new VelibAdapter(values);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter = new VelibAdapter(values);
         recyclerView.setAdapter(recyclerAdapter);
     }
 }
