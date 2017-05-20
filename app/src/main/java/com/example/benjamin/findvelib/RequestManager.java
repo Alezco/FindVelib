@@ -42,6 +42,7 @@ class RequestManager {
                 if (response.isSuccessful()) {
                     Velib serviceVelib = response.body();
                     Log.d("==================", serviceVelib.toString());
+                    velib = serviceVelib;
                 }
                 else {
                     Log.d("====else===", "====================");

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Toast toast = null;
 
     private String[] values = new String[] {
-            "lol", "mdr", "ptdr", RequestManager.getInstance().test
+            "lol", "mdr", "ptdr", String.valueOf(RequestManager.getInstance().velib)
     };
 
     @Override
