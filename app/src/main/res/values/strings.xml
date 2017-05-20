@@ -2,5 +2,5 @@
     <string name="app_name">FindVelib</string>
 
     <string name="about">About</string>
-    <string name="contributors">FindVelib\n by\n Benjamin Morali\n and\n Guillaume Normand</string>
+    <string name="contributors">FindVelib by Benjamin Morali and Guillaume Normand</string>
 </resources>
