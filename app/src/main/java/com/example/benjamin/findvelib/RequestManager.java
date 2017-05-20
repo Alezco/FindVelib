@@ -2,6 +2,10 @@ package com.example.benjamin.findvelib;
 
 import android.util.Log;
 
+import com.example.benjamin.findvelib.dbo.Field;
+import com.example.benjamin.findvelib.dbo.Station;
+import com.example.benjamin.findvelib.dbo.Velib;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,7 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 class RequestManager {
-    public List<Velib> velibList;
+    public Velib velib;
 
     private static final RequestManager ourInstance = new RequestManager();
 
@@ -31,31 +35,30 @@ class RequestManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         VelibService velibService = retrofit.create(VelibService.class);
-        Call<List<Velib>> velibList = velibService.listVelibs();
-        velibList.enqueue(new Callback<List<Velib>>() {
+        Call<Velib> velibs = velibService.getVelibs();
+        velibs.enqueue(new Callback<Velib>() {
             @Override
-            public void onResponse(Call<List<Velib>> call, Response<List<Velib>> response) {
+            public void onResponse(Call<Velib> call, Response<Velib> response) {
                 if (response.isSuccessful()) {
-                    List<Velib> serviceVelibList = response.body();
+                    Velib serviceVelib = response.body();
+                    Log.d("==================", serviceVelib.toString());
                 }
                 else {
-
+                    Log.d("====else===", "====================");
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Velib>> call, Throwable t) {
-
+            public void onFailure(Call<Velib> call, Throwable t) {
+                Log.d("==============", "ERROR");
+                t.printStackTrace();
             }
         });
-        try {
-            this.velibList = velibList.execute().body();
+        /*try {
+            this.velib = velibs.execute().body();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        for (int i = 0; i < this.velibList.size(); i++) {
-            Log.d("===============", this.velibList.get(i).toString());
-        }
+        }*/
+        //List<Field> fields = stations.
     }
 }

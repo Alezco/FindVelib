@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         handleList();
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-        //RequestManager.getInstance().getData();
+        RequestManager.getInstance().getData();
     }
 
     @Override
