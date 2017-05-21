@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
 
-    private String[] velibList;
+    private List<String> velibList;
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
 
@@ -18,7 +20,7 @@ public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> 
         }
     }
 
-    public VelibAdapter(String[] velibList) {
+    public VelibAdapter(List<String> velibList) {
         this.velibList = velibList;
     }
 
@@ -30,11 +32,11 @@ public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textView.setText(velibList[position]);
+        holder.textView.setText(velibList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return velibList.length;
+        return velibList.size();
     }
 }
