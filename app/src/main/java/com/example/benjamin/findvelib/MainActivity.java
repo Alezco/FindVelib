@@ -2,6 +2,7 @@ package com.example.benjamin.findvelib;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.benjamin.findvelib.dbo.Field;
+import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     public List<String> values = new ArrayList<>();
 
-    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(values) ;
+    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(values);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,5 +69,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 }

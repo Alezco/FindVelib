@@ -8,4 +8,8 @@ public class Velib {
     public Velib(List<Station> records) {
         this.records = records;
     }
+
+    public void setStations(List<Station> stations) {
+        this.records = stations;
+    }
 }

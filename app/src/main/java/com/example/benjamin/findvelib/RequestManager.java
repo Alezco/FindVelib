@@ -29,7 +29,7 @@ class RequestManager {
     private RequestManager() {
     }
 
-    public void getData(final List<String> fields, final RecyclerView.Adapter adapter) {
+    public void getData(final List<String> names, final RecyclerView.Adapter adapter) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(VelibService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,10 +42,9 @@ class RequestManager {
                 if (response.isSuccessful()) {
                     Velib serviceVelib = response.body();
                     for (int i = 0; i < serviceVelib.records.size(); i++) {
-                        fields.add(serviceVelib.records.get(i).fields.name);
+                        names.add(serviceVelib.records.get(i).fields.name);
                     }
                     adapter.notifyDataSetChanged();
-                    velib = serviceVelib;
                 }
                 else {
                 }
