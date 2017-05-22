@@ -1,7 +1,8 @@
 package com.example.benjamin.findvelib;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
     }
 
     private Velib velib;
+    private static Context context;
     private final OnItemClickListener listener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -27,6 +29,7 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
             super(v);
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);
+            context = v.getContext();
         }
 
         private void bind(final String item, final OnItemClickListener listener) {
@@ -69,6 +72,9 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
     }
 
     private void handleDetails(String item) {
-        Log.d("=============", item);
+        Intent intent = new Intent(context, DetailsActivity.class);
+        intent.putExtra("stationName", item);
+
+        context.startActivity(intent);
     }
 }
