@@ -3,4 +3,11 @@
 
     <string name="about">About</string>
     <string name="contributors">FindVelib by Benjamin Morali and Guillaume Normand</string>
+
+    <string name="name">Nom : </string>
+    <string name="address">Adresse : </string>
+    <string name="status">Statut : </string>
+    <string name="bikes">Nombre de places : </string>
+    <string name="available">Nombre disponible : </string>
+    <string name="maj">Dernière mise à jour : </string>
 </resources>

@@ -54,12 +54,19 @@ public class DetailsActivity extends AppCompatActivity {
         }
         assert station != null;
         Field fields = station.fields;
-        stationName.setText(fields.name);
-        stationStatus.setText(fields.status);
-        //stationBike.setText(fields.bike_stands);
-        stationBikeAvailable.setText(fields.available_bike_stands);
-        stationAddress.setText(fields.address);
-        stationMajDate.setText(fields.last_update);
+
+        String strName = stationName.getText() + " " +  fields.name;
+        stationName.setText(strName);
+        String strStatus = stationStatus.getText() + " " + fields.status;
+        stationStatus.setText(strStatus);
+        String strBikes = stationBike.getText() + " " + fields.bike_stands;
+        stationBike.setText(strBikes);
+        String strAvailable = stationBikeAvailable.getText() + " " +  fields.available_bike_stands;
+        stationBikeAvailable.setText(strAvailable);
+        String strAddress = stationAddress.getText() + " " +  fields.address;
+        stationAddress.setText(strAddress);
+        String strMaj = stationMajDate.getText() + " " +  fields.last_update;
+        stationMajDate.setText(strMaj);
     }
 
     @Override
