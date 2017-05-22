@@ -2,25 +2,38 @@ package com.example.benjamin.findvelib;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.benjamin.findvelib.dbo.Velib;
 
-class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
-
-    private interface OnItemClickListener {
-        void onItemClick(String item);
-    }
+class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> implements Filterable {
 
     private Velib velib;
     private Context context;
     private final OnItemClickListener listener;
+
+    /* FILTER */
+    public Velib velibFiltered;
+    private StationFilter stationFilter;
+
+    @Override
+    public Filter getFilter() {
+        if(stationFilter == null)
+            stationFilter = new StationFilter(this, velib);
+        return stationFilter;
+    }
+    /* FILTER */
+
+    private interface OnItemClickListener {
+        void onItemClick(String item);
+    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;

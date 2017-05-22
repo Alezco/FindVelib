@@ -1,10 +1,14 @@
 package com.example.benjamin.findvelib;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -40,6 +44,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private static Velib filter(Velib velib, String query) {
+        final String lowerCaseQuery = query.toLowerCase();
+
+        final Velib filteredModelList = new Velib(new ArrayList<Station>());
+        for (Station station : velib.records) {
+            final String text = station.fields.name.toLowerCase();
+            if (text.contains(lowerCaseQuery)) {
+                filteredModelList.records.add(station);
+            }
+        }
+        return filteredModelList;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -70,4 +87,5 @@ public class MainActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
     }
+
 }

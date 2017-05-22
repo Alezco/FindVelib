@@ -3,6 +3,7 @@
 
     <string name="about">About</string>
     <string name="contributors">FindVelib by Benjamin Morali and Guillaume Normand</string>
+    <string name="search">Search</string>
 
     <string name="name">Nom : </string>
     <string name="address">Adresse : </string>
