@@ -21,11 +21,11 @@ import com.example.benjamin.findvelib.dbo.Velib;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private Toast toast = null;
 
     public Velib velib = new Velib(new ArrayList<Station>());
-    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(velib, this);
+    private final VelibAdapter recyclerAdapter = new VelibAdapter(velib, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +41,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
-    private static Velib filter(Velib velib, String query) {
-        final String lowerCaseQuery = query.toLowerCase();
+    @Override
+    public boolean onQueryTextSubmit(String query){
+        recyclerAdapter.filter(query);
+        return true;
+    }
 
-        final Velib filteredModelList = new Velib(new ArrayList<Station>());
-        for (Station station : velib.records) {
-            final String text = station.fields.name.toLowerCase();
-            if (text.contains(lowerCaseQuery)) {
-                filteredModelList.records.add(station);
-            }
-        }
-        return filteredModelList;
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        recyclerAdapter.filter(newText);
+        return true;
     }
 
     @Override
@@ -87,5 +89,4 @@ public class MainActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
     }
-
 }

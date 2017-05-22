@@ -11,25 +11,45 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
-class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> implements Filterable {
+import java.util.ArrayList;
+
+class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
 
     private Velib velib;
     private Context context;
     private final OnItemClickListener listener;
 
-    /* FILTER */
     public Velib velibFiltered;
-    private StationFilter stationFilter;
 
-    @Override
-    public Filter getFilter() {
-        if(stationFilter == null)
-            stationFilter = new StationFilter(this, velib);
-        return stationFilter;
+    public void copyStationsList() {
+        velibFiltered = new Velib(new ArrayList<Station>());
+        for (Station station : velib.records) {
+            velibFiltered.records.add(station);
+        }
     }
-    /* FILTER */
+
+    public void filter(String queryText) {
+        if (velibFiltered == null) {
+            copyStationsList();
+        }
+
+        velib.records.clear();
+        if(queryText.isEmpty()){
+            velib.records.addAll(velibFiltered.records);
+        } else{
+            queryText = queryText.toLowerCase();
+            for (Station station : velibFiltered.records) {
+                if (station.fields.name.toLowerCase().contains(queryText)) {
+                    System.out.println(station.fields.name);
+                    velib.records.add(station);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
     private interface OnItemClickListener {
         void onItemClick(String item);

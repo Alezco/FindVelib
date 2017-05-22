@@ -3,6 +3,7 @@ package com.example.benjamin.findvelib;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
 import retrofit2.Call;
@@ -39,6 +40,7 @@ class RequestManager {
                     velib.setStations(serviceVelib.records);
                     velibList = serviceVelib;
                     adapter.notifyDataSetChanged();
+                    System.out.println("Nombre de stations :" + velibList.records.size());
                 }
             }
 
