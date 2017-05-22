@@ -12,10 +12,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.benjamin.findvelib.dbo.Field;
-import com.example.benjamin.findvelib.dbo.Station;
-import com.example.benjamin.findvelib.dbo.Velib;
-
 import java.util.ArrayList;
 import java.util.List;
 
