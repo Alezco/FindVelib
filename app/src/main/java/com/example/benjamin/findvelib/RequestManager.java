@@ -3,12 +3,7 @@ package com.example.benjamin.findvelib;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.benjamin.findvelib.dbo.Field;
-import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
-
-import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,8 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 class RequestManager {
-
-    private Velib velib;
 
     private static final RequestManager ourInstance = new RequestManager();
 
@@ -29,7 +22,7 @@ class RequestManager {
     private RequestManager() {
     }
 
-    public void getData(final List<String> names, final RecyclerView.Adapter adapter) {
+    public void getData(final Velib velib, final RecyclerView.Adapter adapter) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(VelibService.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -41,12 +34,8 @@ class RequestManager {
             public void onResponse(Call<Velib> call, Response<Velib> response) {
                 if (response.isSuccessful()) {
                     Velib serviceVelib = response.body();
-                    for (int i = 0; i < serviceVelib.records.size(); i++) {
-                        names.add(serviceVelib.records.get(i).fields.name);
-                    }
+                    velib.setStations(serviceVelib.records);
                     adapter.notifyDataSetChanged();
-                }
-                else {
                 }
             }
 
@@ -58,13 +47,4 @@ class RequestManager {
         });
 
     }
-
-    public void setVelib(Velib velib) {
-        this.velib = velib;
-    }
-
-    public Velib getVelib() {
-        return this.velib;
-    }
-
 }

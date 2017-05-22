@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.benjamin.findvelib.dbo.Station;
+import com.example.benjamin.findvelib.dbo.Velib;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Toast toast = null;
 
     public List<String> values = new ArrayList<>();
-
-    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(values);
+    public Velib velib = new Velib(new ArrayList<Station>());
+    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(velib);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         handleList();
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-        RequestManager.getInstance().getData(values, recyclerAdapter);
+        RequestManager.getInstance().getData(velib, recyclerAdapter);
     }
 
     @Override

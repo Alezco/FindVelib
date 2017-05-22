@@ -7,30 +7,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.List;
+import com.example.benjamin.findvelib.dbo.Velib;
 
-public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
+class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
 
-    public interface OnItemClickListener {
+    private interface OnItemClickListener {
         void onItemClick(String item);
     }
 
-    private List<String> velibList;
+    private Velib velib;
     private final OnItemClickListener listener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private ImageView imageView;
 
-        public ViewHolder(View v) {
+        private ViewHolder(View v) {
             super(v);
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);
         }
 
-        public void bind(final String item, final OnItemClickListener listener) {
+        private void bind(final String item, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
@@ -39,8 +38,8 @@ public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> 
         }
     }
 
-    public VelibAdapter(List<String> velibList) {
-        this.velibList = velibList;
+    public VelibAdapter(Velib velib) {
+        this.velib = velib;
         this.listener = new OnItemClickListener() {
             @Override
             public void onItemClick(String item) {
@@ -57,14 +56,16 @@ public class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textView.setText(velibList.get(position));
-        holder.imageView.setImageResource(R.drawable.station_close);
-        holder.bind(velibList.get(position), listener);
+        holder.textView.setText(velib.records.get(position).fields.name);
+        if (velib.records.get(position).fields.status.equals("CLOSED")) {
+            holder.imageView.setImageResource(R.drawable.station_close);
+        }
+        holder.bind(velib.records.get(position).fields.name, listener);
     }
 
     @Override
     public int getItemCount() {
-        return velibList.size();
+        return velib.records.size();
     }
 
     private void handleDetails(String item) {
