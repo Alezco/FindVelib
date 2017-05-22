@@ -1,5 +1,7 @@
 package com.example.benjamin.findvelib;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
         setStationInfo();
     }
 
-    private void setStationInfo() {
+    private Field getStationField() {
         String name = getIntent().getExtras().get("stationName").toString();
         Velib velib = RequestManager.getInstance().velibList;
         Station station = null;
@@ -53,8 +56,12 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
         assert station != null;
-        Field fields = station.fields;
+        return station.fields;
+    }
 
+    private void setStationInfo() {
+
+        Field fields = getStationField();
         String strName = stationName.getText() + " " +  fields.name;
         stationName.setText(strName);
         String strStatus = stationStatus.getText() + " " + fields.status;
@@ -94,5 +101,14 @@ public class DetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openMap(View v) {
+        Field fields = getStationField();
+        String lat = String.valueOf(fields.position[0]);
+        String lon = String.valueOf(fields.position[1]);
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lon));
+        startActivity(intent);
     }
 }

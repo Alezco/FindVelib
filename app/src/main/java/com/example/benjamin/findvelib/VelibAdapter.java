@@ -2,6 +2,7 @@ package com.example.benjamin.findvelib;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,5 +77,7 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         Intent intent = new Intent(context, DetailsActivity.class);
         intent.putExtra("stationName", item);
         context.startActivity(intent);
+
+
     }
 }
