@@ -14,11 +14,11 @@ import com.example.benjamin.findvelib.dbo.Velib;
 class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
 
     private interface OnItemClickListener {
-        void onItemClick(String[] items);
+        void onItemClick(String item);
     }
 
     private Velib velib;
-    private static Context context;
+    private Context context;
     private final OnItemClickListener listener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -29,24 +29,24 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
             super(v);
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);
-            context = v.getContext();
         }
 
-        private void bind(final String[] items, final OnItemClickListener listener) {
+        private void bind(final String item, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    listener.onItemClick(items);
+                    listener.onItemClick(item);
                 }
             });
         }
     }
 
-    public VelibAdapter(Velib velib) {
+    public VelibAdapter(Velib velib, Context context) {
         this.velib = velib;
+        this.context = context;
         this.listener = new OnItemClickListener() {
             @Override
-            public void onItemClick(String[] items) {
-                handleDetails(items);
+            public void onItemClick(String item) {
+                handleDetails(item);
             }
         };
     }
@@ -64,21 +64,7 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
             holder.imageView.setImageResource(R.drawable.station_close);
         }
 
-        //holder.bind(velib.records.get(position).fields.name, listener);
-        holder.bind(getDetailsData(position), listener);
-    }
-
-    public String[] getDetailsData(int position) {
-        String name =  velib.records.get(position).fields.name;
-        String status = velib.records.get(position).fields.status;
-        String bikes = String.valueOf(velib.records.get(position).fields.bike_stands);
-        String available = String.valueOf(velib.records.get(position).fields.available_bike_stands);
-        String address = velib.records.get(position).fields.address;
-        String majDate = velib.records.get(position).fields.last_update;
-        String[] items = new String[] {
-                name, status, bikes, available, address, majDate,
-        };
-        return items;
+        holder.bind(velib.records.get(position).fields.name, listener);
     }
 
     @Override
@@ -86,14 +72,9 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         return velib.records.size();
     }
 
-    private void handleDetails(String[] items) {
+    private void handleDetails(String item) {
         Intent intent = new Intent(context, DetailsActivity.class);
-        intent.putExtra("stationName", items[0]);
-        intent.putExtra("stationStatus", items[1]);
-        intent.putExtra("stationBikes", items[2]);
-        intent.putExtra("stationBikesAvailable", items[3]);
-        intent.putExtra("stationAddress", items[4]);
-        intent.putExtra("stationMajDate", items[5]);
+        intent.putExtra("stationName", item);
         context.startActivity(intent);
     }
 }

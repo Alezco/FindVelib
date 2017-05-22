@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.benjamin.findvelib.dbo.Field;
+import com.example.benjamin.findvelib.dbo.Station;
+import com.example.benjamin.findvelib.dbo.Velib;
+
 public class DetailsActivity extends AppCompatActivity {
 
     private Toast toast = null;
@@ -40,17 +44,22 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setStationInfo() {
         String name = getIntent().getExtras().get("stationName").toString();
-        stationName.setText(name);
-        String status = getIntent().getExtras().get("stationStatus").toString();
-        stationStatus.setText(status);
-        String bikes = getIntent().getExtras().get("stationBikes").toString();
-        stationBike.setText(bikes);
-        String available = getIntent().getExtras().get("stationBikesAvailable").toString();
-        stationBikeAvailable.setText(available);
-        String address = getIntent().getExtras().get("stationAddress").toString();
-        stationAddress.setText(address);
-        String majDate = getIntent().getExtras().get("stationMajDate").toString();
-        stationMajDate.setText(majDate);
+        Velib velib = RequestManager.getInstance().velibList;
+        Station station = null;
+        for (Station s: velib.records) {
+            if (s.fields.name.equals(name)) {
+                station = s;
+                break;
+            }
+        }
+        assert station != null;
+        Field fields = station.fields;
+        stationName.setText(fields.name);
+        stationStatus.setText(fields.status);
+        //stationBike.setText(fields.bike_stands);
+        stationBikeAvailable.setText(fields.available_bike_stands);
+        stationAddress.setText(fields.address);
+        stationMajDate.setText(fields.last_update);
     }
 
     @Override

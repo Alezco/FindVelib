@@ -15,6 +15,8 @@ class RequestManager {
 
     private static final RequestManager ourInstance = new RequestManager();
 
+    public Velib velibList;
+
     static RequestManager getInstance() {
         return ourInstance;
     }
@@ -35,6 +37,7 @@ class RequestManager {
                 if (response.isSuccessful()) {
                     Velib serviceVelib = response.body();
                     velib.setStations(serviceVelib.records);
+                    velibList = serviceVelib;
                     adapter.notifyDataSetChanged();
                 }
             }

@@ -1,6 +1,5 @@
 package com.example.benjamin.findvelib;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,14 +16,12 @@ import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Toast toast = null;
 
-    public List<String> values = new ArrayList<>();
     public Velib velib = new Velib(new ArrayList<Station>());
-    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(velib);
+    private final RecyclerView.Adapter recyclerAdapter = new VelibAdapter(velib, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
