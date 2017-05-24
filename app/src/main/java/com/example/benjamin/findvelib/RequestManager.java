@@ -40,13 +40,11 @@ class RequestManager {
                     velib.setStations(serviceVelib.records);
                     velibList = serviceVelib;
                     adapter.notifyDataSetChanged();
-                    System.out.println("Nombre de stations :" + velibList.records.size());
                 }
             }
 
             @Override
             public void onFailure(Call<Velib> call, Throwable t) {
-                Log.d("==============", "ERROR");
                 t.printStackTrace();
             }
         });

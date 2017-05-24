@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,9 +35,9 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         }
 
         velib.records.clear();
-        if(queryText.isEmpty()){
+        if (queryText.isEmpty()) {
             velib.records.addAll(velibFiltered.records);
-        } else{
+        } else {
             queryText = queryText.toLowerCase();
             for (Station station : velibFiltered.records) {
                 if (station.fields.name.toLowerCase().contains(queryText)) {

@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView stationBikeAvailable;
     private TextView stationAddress;
     private TextView stationMajDate;
+    private ImageView stationStatusImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
         stationBike = (TextView) findViewById(R.id.station_bike_stands);
         stationBikeAvailable = (TextView) findViewById(R.id.station_available_bike_stands);
         stationMajDate = (TextView) findViewById(R.id.station_maj_date);
+        stationStatusImage = (ImageView) findViewById(R.id.imageViewStatus);
 
         setStationInfo();
     }
@@ -60,8 +63,9 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setStationInfo() {
-
         Field fields = getStationField();
+        if (fields.status.equals("CLOSED"))
+            stationStatusImage.setImageResource(R.drawable.station_close);
         String strName = stationName.getText() + " " +  fields.name;
         stationName.setText(strName);
         String strStatus = stationStatus.getText() + " " + fields.status;
@@ -74,6 +78,7 @@ public class DetailsActivity extends AppCompatActivity {
         stationAddress.setText(strAddress);
         String strMaj = stationMajDate.getText() + " " +  fields.last_update;
         stationMajDate.setText(strMaj);
+
     }
 
     @Override
