@@ -95,6 +95,9 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         if (velib.records.get(position).fields.status.equals("CLOSED")) {
             holder.imageView.setImageResource(R.drawable.station_close);
         }
+        else if (velib.records.get(position).fields.status.equals("OPEN")) {
+            holder.imageView.setImageResource(R.drawable.station_open);
+        }
 
         holder.bind(velib.records.get(position).fields.name, listener);
     }

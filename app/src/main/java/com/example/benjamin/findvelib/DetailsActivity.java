@@ -18,6 +18,10 @@ import com.example.benjamin.findvelib.dbo.Field;
 import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetailsActivity extends AppCompatActivity {
 
     private Toast toast = null;
@@ -76,9 +80,28 @@ public class DetailsActivity extends AppCompatActivity {
         stationBikeAvailable.setText(strAvailable);
         String strAddress = stationAddress.getText() + " " +  fields.address;
         stationAddress.setText(strAddress);
-        String strMaj = stationMajDate.getText() + " " +  fields.last_update;
-        stationMajDate.setText(strMaj);
 
+        String strDate = fields.last_update;
+        String strMaj = stationMajDate.getText().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        try {
+            Date date = formatter.parse(strDate.replaceAll("Z$", "+0000"));
+            strMaj = stationMajDate.getText() + " " + calculateMajDisplay(date);
+        }
+        catch (ParseException exception) {
+            exception.printStackTrace();
+        }
+        stationMajDate.setText(strMaj);
+    }
+
+    private String calculateMajDisplay(Date majTime) {
+        long difference = (new Date().getTime() - majTime.getTime()) / 1000;
+        if (difference < 3600)
+            return (difference / 60) + " minutes";
+        else if (difference < 86400)
+            return (difference / 3600) + " heures";
+        else
+            return "il y a plus d'1 jour";
     }
 
     @Override
