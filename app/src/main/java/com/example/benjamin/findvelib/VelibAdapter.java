@@ -20,9 +20,9 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
     private Context context;
     private final OnItemClickListener listener;
 
-    public Velib velibFiltered;
+    private Velib velibFiltered;
 
-    public void copyStationsList() {
+    private void copyStationsList() {
         velibFiltered = new Velib(new ArrayList<Station>());
         for (Station station : velib.records) {
             velibFiltered.records.add(station);

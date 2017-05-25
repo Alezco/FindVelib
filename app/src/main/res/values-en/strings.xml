@@ -11,4 +11,13 @@
     <string name="name">"Name: "</string>
     <string name="search">Search</string>
     <string name="status">"Status: "</string>
+    <string name="time">Time</string>
+    <string name="bike">Bike</string>
+    <string name="info">Information</string>
+    <string name="city">City</string>
+    <string name="location">Location</string>
+    <string name="map">Map</string>
+    <string name="share">Share</string>
+    <string name="closed">Closed</string>
+    <string name="open">Open</string>
 </resources>

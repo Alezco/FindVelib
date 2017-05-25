@@ -27,7 +27,8 @@
                 <ImageView
                     android:id="@+id/imageViewName"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_city_black_24dp" />
+                    android:src="@drawable/ic_location_city_black_24dp"
+                    android:contentDescription="@string/city"/>
 
                 <TextView
                     android:id="@+id/station_name"
@@ -42,7 +43,8 @@
                 <ImageView
                     android:id="@+id/imageViewStatus"
                     android:layout_gravity="center"
-                    android:src="@drawable/station_open" />
+                    android:src="@drawable/station_open"
+                    android:contentDescription="@string/open"/>
 
                 <TextView
                     android:id="@+id/station_status"
@@ -57,7 +59,8 @@
                 <ImageView
                     android:id="@+id/imageViewNb"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_directions_bike_black_24dp" />
+                    android:src="@drawable/ic_directions_bike_black_24dp"
+                    android:contentDescription="@string/bike"/>
 
                 <TextView
                     android:id="@+id/station_bike_stands"
@@ -71,7 +74,8 @@
                 <ImageView
                     android:id="@+id/imageViewAvailable"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_directions_bike_black_24dp" />
+                    android:src="@drawable/ic_directions_bike_black_24dp"
+                    android:contentDescription="@string/bike"/>
 
                 <TextView
                     android:id="@+id/station_available_bike_stands"
@@ -85,7 +89,8 @@
                 <ImageView
                     android:id="@+id/imageViewAddress"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_location_on_black_24dp" />
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    android:contentDescription="@string/address"/>
 
                 <TextView
                     android:id="@+id/station_address"
@@ -100,14 +105,16 @@
                 <ImageView
                     android:id="@+id/imageViewMaps"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_map_black_24dp" />
+                    android:src="@drawable/ic_map_black_24dp"
+                    android:contentDescription="@string/map"/>
             </TableRow>
 
             <TableRow>
                 <ImageView
                     android:id="@+id/imageViewUpdate"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_access_time_black_24dp" />
+                    android:src="@drawable/ic_access_time_black_24dp"
+                    android:contentDescription="@string/time"/>
 
                 <TextView
                     android:id="@+id/station_maj_date"

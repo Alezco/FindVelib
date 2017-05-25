@@ -1,6 +1,5 @@
 package com.example.benjamin.findvelib;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;

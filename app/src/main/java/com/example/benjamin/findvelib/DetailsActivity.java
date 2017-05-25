@@ -21,6 +21,7 @@ import com.example.benjamin.findvelib.dbo.Velib;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -53,7 +54,9 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private Field getStationField() {
-        String name = getIntent().getExtras().get("stationName").toString();
+        Object tmp = getIntent().getExtras().get("stationName");
+        assert tmp != null;
+        String name = tmp.toString();
         Velib velib = RequestManager.getInstance().velibList;
         Station station = null;
         for (Station s: velib.records) {
@@ -83,7 +86,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         String strDate = fields.last_update;
         String strMaj = stationMajDate.getText().toString();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.FRANCE);
         try {
             Date date = formatter.parse(strDate.replaceAll("Z$", "+0000"));
             strMaj = stationMajDate.getText() + " " + calculateMajDisplay(date);

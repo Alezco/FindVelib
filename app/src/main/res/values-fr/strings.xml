@@ -11,4 +11,13 @@
     <string name="name">Nom :</string>
     <string name="search">Recherche</string>
     <string name="status">Statut :</string>
+    <string name="bike">Vélo</string>
+    <string name="time">Temps</string>
+    <string name="info">Informations</string>
+    <string name="city">Ville</string>
+    <string name="location">Localisation</string>
+    <string name="map">Carte</string>
+    <string name="share">Partager</string>
+    <string name="closed">Fermé</string>
+    <string name="open">Ouvert</string>
 </resources>
