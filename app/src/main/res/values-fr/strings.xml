@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FindVelib</string>
+    <string name="about">A propos</string>
+    <string name="address">Adresse :</string>
+    <string name="available">Nombre disponible :</string>
+    <string name="bad_connection">Impossible de se connecter. Merci de vérifier votre connexion</string>
+    <string name="bikes">Nombre de places :</string>
+    <string name="contributors">FIndVelib de Benjamin Morali et Guillaume Normand</string>
+    <string name="maj">Dernière mise à jour:</string>
+    <string name="name">Nom :</string>
+    <string name="search">Recherche</string>
+    <string name="status">Statut :</string>
+</resources>

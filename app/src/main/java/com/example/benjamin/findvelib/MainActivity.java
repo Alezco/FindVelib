@@ -2,6 +2,8 @@ package com.example.benjamin.findvelib;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,7 +37,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         handleList();
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-        RequestManager.getInstance().getData(velib, recyclerAdapter);
+        connect();
+    }
+
+    private void connect() {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            RequestManager.getInstance().getData(velib, recyclerAdapter);
+        } else {
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.bad_connection), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

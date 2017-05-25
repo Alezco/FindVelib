@@ -1,9 +1,10 @@
 package com.example.benjamin.findvelib;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import com.example.benjamin.findvelib.dbo.Station;
 import com.example.benjamin.findvelib.dbo.Velib;
 
 import retrofit2.Call;
