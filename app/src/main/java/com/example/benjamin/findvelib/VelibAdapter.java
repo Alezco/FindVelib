@@ -38,8 +38,7 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         else {
             queryText = queryText.toLowerCase();
             for (Station station : velibFiltered.records) {
-                if (station.fields.name.toLowerCase().contains(queryText)) {
-                    System.out.println(station.fields.name);
+                if (station.fields.address.toLowerCase().contains(queryText)) {
                     velib.records.add(station);
                 }
             }
