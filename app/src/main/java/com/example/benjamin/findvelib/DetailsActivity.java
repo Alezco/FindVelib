@@ -23,10 +23,11 @@ public class DetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         if (viewPager != null) {
             viewPager.setAdapter(viewPagerAdapter);
+            Object position = getIntent().getExtras().get("position");
+            viewPager.setCurrentItem((int) position);
         }
     }
 

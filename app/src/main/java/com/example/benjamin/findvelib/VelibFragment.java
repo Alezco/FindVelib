@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,7 @@ public class VelibFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.velib_page, container, false);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         stationName = (TextView) view.findViewById(R.id.station_name);
         stationStatus = (TextView) view.findViewById(R.id.station_status);
         stationAddress = (TextView) view.findViewById(R.id.station_address);
@@ -60,8 +59,6 @@ public class VelibFragment extends Fragment {
         String name = tmp.toString();
         Velib velib = RequestManager.getInstance().velibList;
         Station station = velib.records.get(index);
-        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
-        viewPager.setCurrentItem(index);
         currentStation = station;
         return station.fields;
     }
@@ -123,7 +120,7 @@ public class VelibFragment extends Fragment {
         });
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
@@ -135,5 +132,5 @@ public class VelibFragment extends Fragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
