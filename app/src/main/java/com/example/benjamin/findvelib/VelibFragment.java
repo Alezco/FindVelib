@@ -38,7 +38,7 @@ public class VelibFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.velib_page, container, false);
-        //setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
         stationName = (TextView) view.findViewById(R.id.station_name);
         stationStatus = (TextView) view.findViewById(R.id.station_status);
         stationAddress = (TextView) view.findViewById(R.id.station_address);
@@ -120,17 +120,18 @@ public class VelibFragment extends Fragment {
         });
     }
 
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
-                Intent intent = new Intent(Intent.ACTION_ALL_APPS);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, currentStation.fields.address);
-                startActivity(intent);
+                intent.setType("text/plain");
+                startActivity(Intent.createChooser(intent, "Share"));
                 break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }
