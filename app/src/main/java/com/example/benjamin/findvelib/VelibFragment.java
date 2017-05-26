@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class VelibFragment extends Fragment {
+    private Station currentStation;
     private TextView stationName;
     private TextView stationStatus;
     private TextView stationBike;
@@ -36,7 +39,7 @@ public class VelibFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.velib_page, container, false);
-
+        setHasOptionsMenu(true);
         stationName = (TextView) view.findViewById(R.id.station_name);
         stationStatus = (TextView) view.findViewById(R.id.station_status);
         stationAddress = (TextView) view.findViewById(R.id.station_address);
@@ -59,6 +62,7 @@ public class VelibFragment extends Fragment {
         Station station = velib.records.get(index);
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.view_pager);
         viewPager.setCurrentItem(index);
+        currentStation = station;
         return station.fields;
     }
 
@@ -109,17 +113,27 @@ public class VelibFragment extends Fragment {
         mapRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMap(v);
+                Field fields = getStationField();
+                String lat = String.valueOf(fields.position[0]);
+                String lon = String.valueOf(fields.position[1]);
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lon));
+                startActivity(intent);
             }
         });
     }
 
-    public void openMap(View v) {
-        Field fields = getStationField();
-        String lat = String.valueOf(fields.position[0]);
-        String lon = String.valueOf(fields.position[1]);
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr=" + lat + "," + lon));
-        startActivity(intent);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                Intent intent = new Intent(Intent.ACTION_ALL_APPS);
+                intent.putExtra(Intent.EXTRA_TEXT, currentStation.fields.address);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
