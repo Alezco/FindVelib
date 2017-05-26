@@ -107,7 +107,6 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
 
     private void handleDetails(String item) {
         Intent intent = new Intent(context, DetailsActivity.class);
-        intent.putExtra("stationName", item);
         Velib velib = RequestManager.getInstance().velibList;
         Station station = null;
         for (Station s : velib.records) {

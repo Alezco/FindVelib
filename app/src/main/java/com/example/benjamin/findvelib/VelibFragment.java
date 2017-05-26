@@ -54,9 +54,6 @@ public class VelibFragment extends Fragment {
     }
 
     private Field getStationField() {
-        Object tmp = getActivity().getIntent().getExtras().get("stationName");
-        assert tmp != null;
-        String name = tmp.toString();
         Velib velib = RequestManager.getInstance().velibList;
         Station station = velib.records.get(index);
         currentStation = station;
