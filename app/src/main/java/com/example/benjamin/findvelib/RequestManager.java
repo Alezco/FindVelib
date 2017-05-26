@@ -1,8 +1,5 @@
 package com.example.benjamin.findvelib;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.benjamin.findvelib.dbo.Velib;

@@ -24,9 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DetailsActivity extends AppCompatActivity {
-
     private Toast toast = null;
-
     private TextView stationName;
     private TextView stationStatus;
     private TextView stationBike;
@@ -71,8 +69,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setStationInfo() {
         Field fields = getStationField();
-        if (fields.status.equals("CLOSED"))
+        if (fields.status.equals("CLOSED")) {
             stationStatusImage.setImageResource(R.drawable.station_close);
+        }
         String strName = stationName.getText() + " " +  fields.name;
         stationName.setText(strName);
         String strStatus = stationStatus.getText() + " " + fields.status;
@@ -99,12 +98,15 @@ public class DetailsActivity extends AppCompatActivity {
 
     private String calculateMajDisplay(Date majTime) {
         long difference = (new Date().getTime() - majTime.getTime()) / 1000;
-        if (difference < 3600)
+        if (difference < 3600) {
             return (difference / 60) + " minutes";
-        else if (difference < 86400)
+        }
+        else if (difference < 86400) {
             return (difference / 3600) + " heures";
-        else
+        }
+        else {
             return "il y a plus d'1 jour";
+        }
     }
 
     @Override
@@ -117,15 +119,16 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.about:
-                if (toast != null)
+                if (toast != null) {
                     toast.cancel();
+                }
                 toast = Toast.makeText(DetailsActivity.this, getResources().getString(R.string.contributors), Toast.LENGTH_SHORT);
                 TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-                if( v != null)
+                if (v != null) {
                     v.setGravity(Gravity.CENTER);
+                }
                 toast.show();
                 break;
             default:

@@ -15,11 +15,9 @@ import com.example.benjamin.findvelib.dbo.Velib;
 import java.util.ArrayList;
 
 class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
-
     private Velib velib;
     private Context context;
     private final OnItemClickListener listener;
-
     private Velib velibFiltered;
 
     private void copyStationsList() {
@@ -33,11 +31,11 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         if (velibFiltered == null) {
             copyStationsList();
         }
-
         velib.records.clear();
         if (queryText.isEmpty()) {
             velib.records.addAll(velibFiltered.records);
-        } else {
+        }
+        else {
             queryText = queryText.toLowerCase();
             for (Station station : velibFiltered.records) {
                 if (station.fields.name.toLowerCase().contains(queryText)) {
@@ -111,7 +109,5 @@ class VelibAdapter extends RecyclerView.Adapter<VelibAdapter.ViewHolder> {
         Intent intent = new Intent(context, DetailsActivity.class);
         intent.putExtra("stationName", item);
         context.startActivity(intent);
-
-
     }
 }

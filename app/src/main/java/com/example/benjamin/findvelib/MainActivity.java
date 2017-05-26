@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private Toast toast = null;
-
     public Velib velib = new Velib(new ArrayList<Station>());
     private final VelibAdapter recyclerAdapter = new VelibAdapter(velib, this);
     private SearchView searchView;
@@ -44,14 +43,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             RequestManager.getInstance().getData(velib, recyclerAdapter);
-        } else {
+        }
+        else {
             Toast.makeText(MainActivity.this, getResources().getString(R.string.bad_connection), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         final MenuItem searchItem = menu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query){
+    public boolean onQueryTextSubmit(String query) {
         recyclerAdapter.filter(query);
         searchView.clearFocus();
         return true;
@@ -73,17 +72,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.about:
-                if (toast != null)
+                if (toast != null) {
                     toast.cancel();
+                }
                 toast = Toast.makeText(MainActivity.this, getResources().getString(R.string.contributors), Toast.LENGTH_SHORT);
                 TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-                if( v != null)
+                if( v != null) {
                     v.setGravity(Gravity.CENTER);
+                }
                 toast.show();
                 break;
             default:
