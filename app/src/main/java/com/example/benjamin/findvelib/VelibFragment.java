@@ -42,7 +42,6 @@ public class VelibFragment extends Fragment {
         stationName = (TextView) view.findViewById(R.id.station_name);
         stationStatus = (TextView) view.findViewById(R.id.station_status);
         stationAddress = (TextView) view.findViewById(R.id.station_address);
-        stationBike = (TextView) view.findViewById(R.id.station_bike_stands);
         stationBikeAvailable = (TextView) view.findViewById(R.id.station_available_bike_stands);
         stationMajDate = (TextView) view.findViewById(R.id.station_maj_date);
         stationStatusImage = (ImageView) view.findViewById(R.id.imageViewStatus);
@@ -69,9 +68,7 @@ public class VelibFragment extends Fragment {
         stationName.setText(strName);
         String strStatus = stationStatus.getText() + " " + fields.status;
         stationStatus.setText(strStatus);
-        String strBikes = stationBike.getText() + " " + fields.bike_stands;
-        stationBike.setText(strBikes);
-        String strAvailable = stationBikeAvailable.getText() + " " +  fields.available_bike_stands;
+        String strAvailable = stationBikeAvailable.getText() + " " +  fields.available_bike_stands + "/" + fields.bike_stands;
         stationBikeAvailable.setText(strAvailable);
         String strAddress = stationAddress.getText() + " " +  fields.address;
         stationAddress.setText(strAddress);

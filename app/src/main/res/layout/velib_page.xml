@@ -50,21 +50,6 @@
 
             <TableRow>
                 <ImageView
-                    android:id="@+id/imageViewNb"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_directions_bike_black_24dp"
-                    android:contentDescription="@string/bike"/>
-
-                <TextView
-                    android:id="@+id/station_bike_stands"
-                    android:text="@string/bikes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="10dp"/>
-            </TableRow>
-            <TableRow>
-                <ImageView
                     android:id="@+id/imageViewAvailable"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_directions_bike_black_24dp"

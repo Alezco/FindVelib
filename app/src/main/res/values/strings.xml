@@ -8,7 +8,6 @@
     <string name="name">Name: </string>
     <string name="address">Address: </string>
     <string name="status">Status: </string>
-    <string name="bikes">Number of places: </string>
     <string name="available">Number available: </string>
     <string name="maj">Last update: </string>
     <string name="bad_connection">Unable to connect. Please check your internet connection</string>
