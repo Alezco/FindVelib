@@ -3,7 +3,7 @@
     <string name="app_name">FindVelib</string>
     <string name="about">About</string>
     <string name="address">"Address: "</string>
-    <string name="available">"available bikes: "</string>
+    <string name="available">Number available:</string>
     <string name="bad_connection">Unable to connect. Please check your internet connection</string>
     <string name="contributors">FindVelib by Benjamin Morali and Guillaume Normand</string>
     <string name="maj">"Last update: "</string>
